@@ -6,11 +6,35 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/24 11:01:10 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/29 11:20:56 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/07/05 17:25:02 by jefferson        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+** Make sure that you can have "*=*=*"
+*/
+
+static int		ft_check(char **command)
+{
+	size_t	index;
+	size_t	i;
+
+	index = 0;
+	while (command[index])
+	{
+		i = 0;
+		while (command[index][i])
+		{
+			if (command[index][i] == '=')
+				return (0);
+			i++;
+		}
+		index++;
+	}
+	return (1);
+}
 
 /*
 ** As explicit as it is, just print the error for the user.
@@ -18,12 +42,14 @@
 
 static int		ft_parsing_setenv(char **command)
 {
-	if (!command[1])
+	if (!command[1] || !command[2])
 		ft_putendl_fd("unsetenv: Too few arguments.", 2);
 	else if (command[3])
 		ft_putendl_fd("setenv: Too many arguments.", 2);
 	else if (ft_isalpha(command[0][0]) == 0)
 		ft_putendl_fd("setenv: Variable name must begin with a letter.", 2);
+	else if (ft_check(command) == 0)
+		ft_putendl_fd("setenv: usage: Variable Value", 2);
 	else
 		return (1);
 	return (0);

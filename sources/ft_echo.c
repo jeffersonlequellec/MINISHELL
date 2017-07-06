@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/26 10:21:04 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/29 11:21:13 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/07/06 11:07:42 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ static void		ft_print_without_newline(char **command)
 
 int				ft_echo(char **command)
 {
-	if (ft_strcmp(command[1], "-n") == 0)
+	if (!command[1])
+		ft_putendl("");
+	else if (ft_strcmp(command[1], "-n") == 0)
 		ft_print_without_newline(command + 2);
 	else
 		ft_print_with_newline(command + 1);

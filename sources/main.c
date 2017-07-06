@@ -6,7 +6,7 @@
 /*   By: jle-quel <jle-quel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 12:04:28 by jle-quel          #+#    #+#             */
-/*   Updated: 2017/06/29 16:52:59 by jle-quel         ###   ########.fr       */
+/*   Updated: 2017/07/06 13:45:40 by jle-quel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int				main(void)
 			ft_arraydel(&command, ft_arraylen(command));
 			ft_strdel(&line);
 		}
+		else if (command)
+			ft_arraydel(&command, ft_arraylen(command));
 	}
 	ft_arraydel(&env, ft_arraylen(env));
 	return (0);
